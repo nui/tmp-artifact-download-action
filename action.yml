@@ -1,0 +1,17 @@
+name: 'Download Tmp Artifact'
+description: 'Download from temporary artifact server'
+inputs:
+  uuid:  # id of input
+    description: 'Uuid of previous upload file'
+    required: true
+  url:  # id of input
+    description: 'Server url'
+    required: true
+runs:
+  using: 'docker'
+  image: 'docker://nuimk/tmp-artifact-action:dev'
+  args:
+    - action
+    - download
+    - --url=${{ inputs.url }}
+    - ${{ inputs.uuid }}
